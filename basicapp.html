@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <title>To-Do List App</title>
+    <style>
+    .header {
+    background-color: green;
+    width:80%;
+    height: auto;}
+    .text {
+      align-items: baseline;
+      font-size: 14pt;
+    }
+    </style>
+    <script>
+    function addItem() {
+      var newItem = document.createElement("div");
+      newItem.innerHTML = document.getElementById("box").value;
+      newItem.onclick = removeItem;
+      document.getElementById("list").appendChild(newItem);
+      saveList();
+    }
+    function removeItem() {
+      document.getElementById("list").removeChild(this)
+        saveList();
+    }
+    function saveList(){
+      localStorage.storeList = document.getElementById("list").innerHTML;
+    }
+    function loadList() {
+      document.getElementById("list").innerHTML = localStorage.storeList;
+    }
+      </script>
+  </head>
+  <body>
+    <div class="header text">
+  <p>Special to-do list for kickass</p>
+  <br/>
+  <input type="text" Id="box" value="type here to add task"/>
+  <br/>
+  <input type="button" value="click to add a task" onclick="addItem();"/>
+  <br/>
+  <div id="list"></div>
+  <script>
+  if (localStorage.storeList) {loadList();
+  }
+    </script>
+  </div>
+  </body>
+  </html>
